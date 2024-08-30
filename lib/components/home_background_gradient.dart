@@ -1,11 +1,12 @@
+// Cercle rouge flou en bas à droite
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants/constants.dart';
 
-class DareBackgroundGradient extends StatelessWidget {
-  const DareBackgroundGradient({super.key});
+class HomeBackgroundGradient extends StatelessWidget {
+  const HomeBackgroundGradient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Constants.dareColor,
+                  Constants.homePageColor,
                   Color.fromRGBO(255, 255, 255, 0),
                 ],
               ),
@@ -39,7 +40,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(1),
+                  color: Constants.homePageColor.withOpacity(1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -59,7 +60,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0.1),
+                  color: Constants.homePageColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -78,7 +79,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0),
+                  color: Constants.homePageColor.withOpacity(0),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -97,7 +98,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 width: 350.0,
                 height: 350.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(1),
+                  color: Constants.homePageColor.withOpacity(1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -116,7 +117,7 @@ class DareBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0),
+                  color: Constants.homePageColor.withOpacity(0),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -125,45 +126,50 @@ class DareBackgroundGradient extends StatelessWidget {
 
           Positioned(
             top: 50,
+            right: 0,
+            child: Transform.rotate(
+                angle: 0,
+                child: SvgPicture.asset('assets/home_classic.svg', width: 150
+                )
+            ),
+          ),
+
+          Positioned(
+            top: 180,
+            left: 150,
+            child: Transform.rotate(
+                angle: 0,
+                child: SvgPicture.asset('assets/home_spicy.svg', width: 150
+                )
+            ),
+          ),
+
+          Positioned(
+            top: 400,
             right: 30,
             child: Transform.rotate(
-              angle: -10,
-                child: SvgPicture.asset('assets/dare.svg', width: 85
+                angle: 13,
+                child: SvgPicture.asset('assets/classic.svg', width: 80
                 )
             ),
           ),
 
           Positioned(
-            top: 150,
-            left: 30,
+            top: 250,
+            left: 20,
+            child: SvgPicture.asset('assets/spicy.svg', width: 80),
+          ),
+
+
+          Positioned(
+            bottom: -70,
+            left: -30,
             child: Transform.rotate(
-                angle: 8,
-                child: SvgPicture.asset('assets/dare.svg', width: 70
+                angle: 1,
+                child: SvgPicture.asset('assets/home_spicy.svg', width: 150
                 )
             ),
           ),
-
-          Positioned(
-            top: 215,
-            right: 30,
-            child: Transform.rotate(
-                angle: 12,
-                child: SvgPicture.asset('assets/dare.svg', width: 80
-                )
-            ),
-          ),
-
-          Positioned(
-            bottom: 150,
-            left: 50,
-            child: SvgPicture.asset('assets/dare.svg', width: 60),
-          ),
-
-          Positioned(
-            bottom: -90,
-              right: 50,
-              child: SvgPicture.asset('assets/dare.svg', width: 100),
-          )
 
 
           // Autre contenu ici, si nécessaire

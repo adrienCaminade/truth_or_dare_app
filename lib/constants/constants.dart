@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class Constants {
   // Couleurs
+  static const Color homePageColor = Color(0xFF6BBF78);
+  static const Color homePageColor2 = Color(0xFF117521);
   static const Color dareColor = Color(0xFFEC6E6E);
   static const Color truthColor = Color(0xFF6E99EC);
   static const Color titleRedDareColor = Color(0xFFD3040C);

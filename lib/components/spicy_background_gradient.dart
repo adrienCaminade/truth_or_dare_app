@@ -1,12 +1,11 @@
-// Cercle rouge flou en bas à droite
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants/constants.dart';
 
-class TruthBackgroundGradient extends StatelessWidget {
-  const TruthBackgroundGradient({super.key});
+class DareBackgroundGradient extends StatelessWidget {
+  const DareBackgroundGradient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class TruthBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(1),
+                  color: Constants.dareColor.withOpacity(1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -60,7 +59,7 @@ class TruthBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0.1),
+                  color: Constants.dareColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -79,7 +78,7 @@ class TruthBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0),
+                  color: Constants.dareColor.withOpacity(0),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -98,7 +97,7 @@ class TruthBackgroundGradient extends StatelessWidget {
                 width: 350.0,
                 height: 350.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(1),
+                  color: Constants.dareColor.withOpacity(1),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -117,7 +116,7 @@ class TruthBackgroundGradient extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0),
+                  color: Constants.dareColor.withOpacity(0),
                   borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
                 ),
               ),
@@ -128,8 +127,8 @@ class TruthBackgroundGradient extends StatelessWidget {
             top: 50,
             right: 30,
             child: Transform.rotate(
-                angle: -10,
-                child: SvgPicture.asset('assets/truth.svg', width: 85
+              angle: -10,
+                child: SvgPicture.asset('assets/spicy.svg', width: 85
                 )
             ),
           ),
@@ -139,7 +138,7 @@ class TruthBackgroundGradient extends StatelessWidget {
             left: 30,
             child: Transform.rotate(
                 angle: 8,
-                child: SvgPicture.asset('assets/truth.svg', width: 70
+                child: SvgPicture.asset('assets/spicy.svg', width: 70
                 )
             ),
           ),
@@ -149,7 +148,7 @@ class TruthBackgroundGradient extends StatelessWidget {
             right: 30,
             child: Transform.rotate(
                 angle: 12,
-                child: SvgPicture.asset('assets/truth.svg', width: 80
+                child: SvgPicture.asset('assets/spicy.svg', width: 80
                 )
             ),
           ),
@@ -157,13 +156,13 @@ class TruthBackgroundGradient extends StatelessWidget {
           Positioned(
             bottom: 150,
             left: 50,
-            child: SvgPicture.asset('assets/truth.svg', width: 60),
+            child: SvgPicture.asset('assets/spicy.svg', width: 60),
           ),
 
           Positioned(
             bottom: -90,
-            right: 50,
-            child: SvgPicture.asset('assets/truth.svg', width: 100),
+              right: 50,
+              child: SvgPicture.asset('assets/spicy.svg', width: 100),
           )
 
 
