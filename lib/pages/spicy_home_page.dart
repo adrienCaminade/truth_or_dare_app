@@ -5,34 +5,48 @@ import 'package:true_or_dare_app/components/spicy_background_gradient.dart';
 import 'package:true_or_dare_app/pages/classic_home_page.dart';
 import '../components/gradient_text.dart';
 import '../constants/constants.dart';
+import '../models/Game.dart';
+import '../services/api.dart';
+import '../services/game_utils.dart';
 
-class DareHomePage extends StatefulWidget {
-  const DareHomePage({super.key});
+class SpicyHomePage extends StatefulWidget {
+  const SpicyHomePage({super.key});
 
   @override
-  State<DareHomePage> createState() => _DareHomePageState();
+  State<SpicyHomePage> createState() => _SpicyHomePageState();
 }
 
-class _DareHomePageState extends State<DareHomePage> {
+class _SpicyHomePageState extends State<SpicyHomePage> {
   bool selectedDare = false;
   bool selectedTruth = false;
 
-  Future<void> displayTruthBox() async {
-    if (!selectedTruth) {
-      await Future.delayed(Duration(milliseconds: 20));
-      setState(() {
-        selectedTruth = true;
-      });
-    }
-  }
+  late Future<List<Game>> dareSpicy;
+  late Future<List<Game>> truthSpicy;
 
-  Future<void> displayDareBox() async {
-    if (!selectedDare) {
-      await Future.delayed(Duration(milliseconds: 20));
+  final gameUtils = GameUtils();
+
+  Future<void> handleDisplayDare() async {
+    gameUtils.displayBox(selectedDare, () {
       setState(() {
         selectedDare = true;
       });
-    }
+    });
+  }
+
+  Future<void> handleDisplayTruth() async {
+    gameUtils.displayBox(selectedTruth, () {
+      setState(() {
+        selectedTruth = true;
+      });
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    dareSpicy = API().getDareSpicy();
+    truthSpicy = API().getTruthSpicy();
   }
 
   @override
@@ -40,7 +54,7 @@ class _DareHomePageState extends State<DareHomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          DareBackgroundGradient(),
+          SpicyBackgroundGradient(),
 
           Positioned(
             top: 90,
@@ -77,8 +91,8 @@ class _DareHomePageState extends State<DareHomePage> {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Constants.titleBlackDareColor,
-                                Constants.titleRedDareColor.withOpacity(0.3),
+                                Constants.titleBlackColor,
+                                Constants.titleRedSpicyColor.withOpacity(0.3),
                               ],
                             ),
                             text: 'Action ou Vérité',
@@ -103,8 +117,8 @@ class _DareHomePageState extends State<DareHomePage> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Constants.titleRedDareColor2,
-                          Constants.titleRedDareColor.withOpacity(0),
+                          Constants.titleRedSpicyColor2,
+                          Constants.titleRedSpicyColor.withOpacity(0),
                         ],
                       ),
                       text: 'Spicy',
@@ -134,39 +148,57 @@ class _DareHomePageState extends State<DareHomePage> {
                           children: [
 
                             AnimatedPositioned(
-                              //      width: selectedTruth ? 250.0 : 150.0,
-                              //      height: selectedTruth ? 150.0 : 100.0,
                               width: selectedDare ? 250.0 : 0,
                               height: selectedDare ? 200.0 : 0,
                               left: selectedDare ? -20 : 30,
                               bottom: selectedDare ? -10 : 150,
-                              duration: const Duration(seconds: 2),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.fastOutSlowIn,
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                height: 200,
-                                width: 200,
-                                child: ClipRRect(
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomCenter,
-                                          colors: [Colors.white60, Colors.white10],
+                              child: Offstage(
+                                offstage: !selectedDare,  // Contrôle la visibilité du FutureBuilder
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  height: 200,
+                                  width: 200,
+                                  child: ClipRRect(
+                                    child: BackdropFilter(
+                                      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomCenter,
+                                            colors: [Colors.white60, Colors.white10],
+                                          ),
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(width: 2, color: Colors.white30),
                                         ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(width: 2, color: Colors.white30),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 30,
-                                              color: Colors.black,
-                                            ),
-                                          )
+                                        child: Center(
+                                          child: FutureBuilder<List<Game>>(
+                                            future: dareSpicy,
+                                            builder: (context, snapshot) {
+                                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                                return const Center(child: CircularProgressIndicator());
+                                              } else if (snapshot.hasError) {
+                                                return Center(child: Text('Error: ${snapshot.error}'));
+                                              } else if (snapshot.hasData) {
+                                                final List<Game> dares = snapshot.data!;
+                                                final randomDare = gameUtils.getRandomDare(dares);
+                                                return Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      randomDare.description,
+                                                      style: TextStyle(fontSize: 18),
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return const Center(child: Text('Aucune action disponible.'));
+                                              }
+                                            },
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -175,18 +207,17 @@ class _DareHomePageState extends State<DareHomePage> {
                             ),
 
 
+
                             AnimatedPositioned(
-                              //      width: selectedTruth ? 250.0 : 150.0,
-                              //      height: selectedTruth ? 150.0 : 100.0,
                               width: selectedDare ? 150.0 : 150.0,
                               height: selectedDare ? 100.0 : 100.0,
                               left: selectedDare ? 30.0 : -45,
                               bottom: selectedDare ? 150 : 100,
-                              duration: const Duration(seconds: 2),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.fastOutSlowIn,
                               child: GestureDetector(
                                 onTap: () async {
-                                  await displayDareBox();
+                                  await handleDisplayDare();
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(10),
@@ -222,13 +253,11 @@ class _DareHomePageState extends State<DareHomePage> {
                             ),
 
                             AnimatedPositioned(
-                              //      width: selectedTruth ? 250.0 : 150.0,
-                              //      height: selectedTruth ? 150.0 : 100.0,
                               width: selectedDare ? 60.0 : 0,
                               height: selectedDare ? 60.0 : 0,
                               left: selectedDare ? 150 : 30,
                               bottom: selectedDare ? -30 : 150,
-                              duration: const Duration(seconds: 2),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.fastOutSlowIn,
                               child: GestureDetector(
                                 onTap: (){
@@ -236,31 +265,34 @@ class _DareHomePageState extends State<DareHomePage> {
                                     selectedDare = !selectedDare;
                                   });
                                 },
-                                child: Container(
-                                  padding: EdgeInsets.all(10),
-                                  height: 60,
-                                  width: 60,
-                                  child: ClipRRect(
-                                    child: BackdropFilter(
-                                      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomCenter,
-                                            colors: [Colors.white60, Colors.white10],
+                                child: Offstage(
+                                  offstage: !selectedDare,  // Contrôle la visibilité du FutureBuilder
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    height: 60,
+                                    width: 60,
+                                    child: ClipRRect(
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomCenter,
+                                              colors: [Colors.white60, Colors.white10],
+                                            ),
+                                            borderRadius: BorderRadius.circular(20),
+                                            border: Border.all(width: 2, color: Colors.white30),
                                           ),
-                                          borderRadius: BorderRadius.circular(20),
-                                          border: Border.all(width: 2, color: Colors.white30),
-                                        ),
-                                        child: Center(
-                                            child: Text(
-                                              'X',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.black,
-                                              ),
-                                            )
+                                          child: Center(
+                                              child: Text(
+                                                'X',
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                ),
+                                              )
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -276,39 +308,58 @@ class _DareHomePageState extends State<DareHomePage> {
                       clipBehavior: Clip.none,
                       children: [
                           AnimatedPositioned(
-                            //      width: selectedTruth ? 250.0 : 150.0,
-                            //      height: selectedTruth ? 150.0 : 100.0,
                             width: selectedTruth ? 250.0 : 0,
                             height: selectedTruth ? 200.0 : 0,
                             left: selectedTruth ? -20 : 30,
                             bottom: selectedTruth ? -10 : 150,
-                            duration: const Duration(seconds: 2),
+                            duration: const Duration(milliseconds: 500),
                             curve: Curves.fastOutSlowIn,
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              height: 200,
-                              width: 200,
-                              child: ClipRRect(
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomCenter,
-                                        colors: [Colors.white60, Colors.white10],
+                            child: Offstage(
+                              offstage: !selectedTruth,  // Contrôle la visibilité du FutureBuilder
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                height: 200,
+                                width: 200,
+                                child: ClipRRect(
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomCenter,
+                                          colors: [Colors.white60, Colors.white10],
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(width: 2, color: Colors.white30),
                                       ),
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(width: 2, color: Colors.white30),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                          '',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            color: Colors.black,
+                                      child: Center(
+                                          child: FutureBuilder<List<Game>>(
+                                            future: truthSpicy,
+                                            builder: (context, snapshot) {
+                                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                                return const Center(child: CircularProgressIndicator());
+                                              } else if (snapshot.hasError) {
+                                                return Center(child: Text('Error: ${snapshot.error}'));
+                                              } else if (snapshot.hasData) {
+                                                final List<Game> truthes = snapshot.data!;
+                                                final randomTruth = gameUtils.getRandomTruth(truthes);
+
+                                                return Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      randomTruth.description,
+                                                      style: TextStyle(fontSize: 18),
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return const Center(child: Text('Aucune vérité disponible.'));
+                                              }
+                                            },
                                           ),
-                                        )
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -318,17 +369,15 @@ class _DareHomePageState extends State<DareHomePage> {
 
 
                         AnimatedPositioned(
-                          //      width: selectedTruth ? 250.0 : 150.0,
-                          //      height: selectedTruth ? 150.0 : 100.0,
                           width: selectedTruth ? 150.0 : 150.0,
                           height: selectedTruth ? 100.0 : 100.0,
                           left: selectedTruth ? 30.0 : 100,
                           bottom: selectedTruth ? 150 : 100,
-                          duration: const Duration(seconds: 2),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.fastOutSlowIn,
                           child: GestureDetector(
                             onTap: () async {
-                                await displayTruthBox();
+                                await handleDisplayTruth();
                             },
                             child: Container(
                               padding: EdgeInsets.all(10),
@@ -364,13 +413,11 @@ class _DareHomePageState extends State<DareHomePage> {
                         ),
 
                         AnimatedPositioned(
-                          //      width: selectedTruth ? 250.0 : 150.0,
-                          //      height: selectedTruth ? 150.0 : 100.0,
                           width: selectedTruth ? 60.0 : 0,
                           height: selectedTruth ? 60.0 : 0,
                           left: selectedTruth ? 150 : 30,
                           bottom: selectedTruth ? -30 : 150,
-                          duration: const Duration(seconds: 2),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.fastOutSlowIn,
                           child: GestureDetector(
                             onTap: (){
@@ -378,31 +425,34 @@ class _DareHomePageState extends State<DareHomePage> {
                                 selectedTruth = !selectedTruth;
                               });
                             },
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              height: 60,
-                              width: 60,
-                              child: ClipRRect(
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomCenter,
-                                        colors: [Colors.white60, Colors.white10],
+                            child: Offstage(
+                              offstage: !selectedTruth,
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                height: 60,
+                                width: 60,
+                                child: ClipRRect(
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomCenter,
+                                          colors: [Colors.white60, Colors.white10],
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(width: 2, color: Colors.white30),
                                       ),
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(width: 2, color: Colors.white30),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                          'X',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black,
-                                          ),
-                                        )
+                                      child: Center(
+                                          child: Text(
+                                            'X',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          )
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -412,14 +462,9 @@ class _DareHomePageState extends State<DareHomePage> {
                         ),
                       ],
                     )
-
                     ],
                   ),
                 ),
-
-
-
-
 
               ],
             ),
@@ -438,7 +483,7 @@ class _DareHomePageState extends State<DareHomePage> {
                     Navigator.push(
                       context,
                       PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) => TruthHomePage(),
+                        pageBuilder: (context, animation, secondaryAnimation) => ClassicHomePage(),
                         transitionsBuilder: (context, animation, secondaryAnimation, child) {
                           const begin = 0.0;
                           const end = 1.0;
@@ -480,7 +525,6 @@ class _DareHomePageState extends State<DareHomePage> {
               ],
             ),
           ),
-
         ],
       ),
     );

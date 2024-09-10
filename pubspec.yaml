@@ -1,5 +1,5 @@
 name: true_or_dare_app
-description: "A new Flutter project."
+description: "A simple app of Truth or Dare in french made in Flutter, linked by an API Laravel."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -41,10 +41,8 @@ dependencies:
   easy_splash_screen: ^1.0.4
 
 flutter_launcher_icons:
-  ios: true
   android: true
-  image_path_ios: "assets/dare.svg"
-  image_path_android: "assets/dare.svg"
+  image_path_android: "assets/icon_truth_or_dare.png"
 
 dev_dependencies:
   flutter_test:

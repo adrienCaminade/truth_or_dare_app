@@ -1,4 +1,3 @@
-// Cercle rouge flou en bas à droite
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,13 +26,12 @@ class HomeBackgroundGradient extends StatelessWidget {
             ),
           ),
 
-          // Cercle rouge flou en haut à gauche
           Positioned(
             top: -50,
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
@@ -41,19 +39,18 @@ class HomeBackgroundGradient extends StatelessWidget {
                 height: 300.0,
                 decoration: BoxDecoration(
                   color: Constants.homePageColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
           ),
 
-          // Cercle rouge flou en bas à droite
           Positioned(
             bottom: -50,
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
@@ -61,7 +58,7 @@ class HomeBackgroundGradient extends StatelessWidget {
                 height: 300.0,
                 decoration: BoxDecoration(
                   color: Constants.homePageColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -72,7 +69,7 @@ class HomeBackgroundGradient extends StatelessWidget {
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
@@ -80,7 +77,7 @@ class HomeBackgroundGradient extends StatelessWidget {
                 height: 300.0,
                 decoration: BoxDecoration(
                   color: Constants.homePageColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -91,7 +88,7 @@ class HomeBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
@@ -99,7 +96,7 @@ class HomeBackgroundGradient extends StatelessWidget {
                 height: 350.0,
                 decoration: BoxDecoration(
                   color: Constants.homePageColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -110,7 +107,7 @@ class HomeBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 50, // Réduit le flou pour un effet plus visible
+                sigmaX: 50,
                 sigmaY: 50,
               ),
               child: Container(
@@ -118,7 +115,7 @@ class HomeBackgroundGradient extends StatelessWidget {
                 height: 300.0,
                 decoration: BoxDecoration(
                   color: Constants.homePageColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -171,8 +168,6 @@ class HomeBackgroundGradient extends StatelessWidget {
             ),
           ),
 
-
-          // Autre contenu ici, si nécessaire
         ],
       ),
     );

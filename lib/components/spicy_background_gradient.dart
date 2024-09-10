@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../constants/constants.dart';
 
-class DareBackgroundGradient extends StatelessWidget {
-  const DareBackgroundGradient({super.key});
+class SpicyBackgroundGradient extends StatelessWidget {
+  const SpicyBackgroundGradient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,48 +19,47 @@ class DareBackgroundGradient extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Constants.dareColor,
+                  Constants.spicyColor,
                   Color.fromRGBO(255, 255, 255, 0),
                 ],
               ),
             ),
           ),
 
-          // Cercle rouge flou en haut à gauche
+
           Positioned(
             top: -50,
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.spicyColor.withOpacity(1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
           ),
 
-          // Cercle rouge flou en bas à droite
           Positioned(
             bottom: -50,
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.spicyColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -71,15 +70,15 @@ class DareBackgroundGradient extends StatelessWidget {
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.spicyColor.withOpacity(0),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -90,15 +89,15 @@ class DareBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 350.0,
                 height: 350.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.spicyColor.withOpacity(1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -109,15 +108,15 @@ class DareBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 50, // Réduit le flou pour un effet plus visible
+                sigmaX: 50,
                 sigmaY: 50,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.dareColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.spicyColor.withOpacity(0),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -164,9 +163,6 @@ class DareBackgroundGradient extends StatelessWidget {
               right: 50,
               child: SvgPicture.asset('assets/spicy.svg', width: 100),
           )
-
-
-          // Autre contenu ici, si nécessaire
         ],
       ),
     );

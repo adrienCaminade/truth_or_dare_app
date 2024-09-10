@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:true_or_dare_app/components/home_background_gradient.dart';
 import 'package:true_or_dare_app/pages/spicy_home_page.dart';
 import 'package:true_or_dare_app/pages/classic_home_page.dart';
@@ -54,7 +53,7 @@ class HomePage extends StatelessWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Constants.titleBlackDareColor,
+                                Constants.titleBlackColor,
                                 Constants.homePageColor2.withOpacity(0.3),
                               ],
                             ),
@@ -84,7 +83,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation, secondaryAnimation) => DareHomePage(),
+                            pageBuilder: (context, animation, secondaryAnimation) => SpicyHomePage(),
                             transitionsBuilder: (context, animation, secondaryAnimation, child) {
                               const begin = 0.0;
                               const end = 1.0;
@@ -119,7 +118,7 @@ class HomePage extends StatelessWidget {
                                     'Spicy',
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Constants.titleRedDareColor,
+                                      color: Constants.titleRedSpicyColor,
                                     ),
                                   )
                               ),
@@ -141,7 +140,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation, secondaryAnimation) => TruthHomePage(),
+                            pageBuilder: (context, animation, secondaryAnimation) => ClassicHomePage(),
                             transitionsBuilder: (context, animation, secondaryAnimation, child) {
                               const begin = 0.0;
                               const end = 1.0;
@@ -176,7 +175,7 @@ class HomePage extends StatelessWidget {
                                     'Classic',
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Constants.titleBlueTruthColor,
+                                      color: Constants.titleBlueClassicColor,
                                     ),
                                   )
                               ),
@@ -187,8 +186,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-
-
               ],
             ),
           ),

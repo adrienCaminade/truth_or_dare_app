@@ -1,12 +1,11 @@
-// Cercle rouge flou en bas à droite
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants/constants.dart';
 
-class TruthBackgroundGradient extends StatelessWidget {
-  const TruthBackgroundGradient({super.key});
+class ClassicBackgroundGradient extends StatelessWidget {
+  const ClassicBackgroundGradient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,48 +19,46 @@ class TruthBackgroundGradient extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Constants.truthColor,
+                  Constants.classicColor,
                   Color.fromRGBO(255, 255, 255, 0),
                 ],
               ),
             ),
           ),
 
-          // Cercle rouge flou en haut à gauche
           Positioned(
             top: -50,
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.classicColor.withOpacity(1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
           ),
 
-          // Cercle rouge flou en bas à droite
           Positioned(
             bottom: -50,
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.classicColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -72,15 +69,15 @@ class TruthBackgroundGradient extends StatelessWidget {
             left: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.classicColor.withOpacity(0),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -91,15 +88,15 @@ class TruthBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 20, // Réduit le flou pour un effet plus visible
+                sigmaX: 20,
                 sigmaY: 20,
               ),
               child: Container(
                 width: 350.0,
                 height: 350.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(1),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.classicColor.withOpacity(1),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -110,15 +107,15 @@ class TruthBackgroundGradient extends StatelessWidget {
             right: -50,
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 50, // Réduit le flou pour un effet plus visible
+                sigmaX: 50,
                 sigmaY: 50,
               ),
               child: Container(
                 width: 300.0,
                 height: 300.0,
                 decoration: BoxDecoration(
-                  color: Constants.truthColor.withOpacity(0),
-                  borderRadius: BorderRadius.circular(200), // Ajusté pour un cercle
+                  color: Constants.classicColor.withOpacity(0),
+                  borderRadius: BorderRadius.circular(200),
                 ),
               ),
             ),
@@ -165,9 +162,6 @@ class TruthBackgroundGradient extends StatelessWidget {
             right: 50,
             child: SvgPicture.asset('assets/classic.svg', width: 100),
           )
-
-
-          // Autre contenu ici, si nécessaire
         ],
       ),
     );
