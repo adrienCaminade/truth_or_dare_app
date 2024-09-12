@@ -28,6 +28,25 @@ The idea behind this application is to modernize the classic game "Truth or Dare
 
 The target audience includes mostly evening gatherings (student or otherwise), with a quick and intuitive selection system, inspired by drinking games for a smooth and fun experience.
 
+<p>
+<span><img src="https://truthordareapi.creativedev.fr/public/loading_screen.jpg" width="200"></span>
+<span><img src="https://truthordareapi.creativedev.fr/public/homepage_screen.jpg" width="200"></span>
+</p>
+
+<p>
+<span><img src="https://truthordareapi.creativedev.fr/public/classic_page_screen.jpg" width="200"></span>
+<span><img src="https://truthordareapi.creativedev.fr/public/classic_dare_screen.jpg" width="200"></span>
+<span><img src="https://truthordareapi.creativedev.fr/public/classic_truth_screen.jpg" width="200"></span>
+</p>
+
+<p>
+<span><img src="https://truthordareapi.creativedev.fr/public/spicy_page_screen.jpg" width="200"></span>
+<span><img src="https://truthordareapi.creativedev.fr/public/spicy_dare_screen.jpg" width="200"></span>
+<span><img src="https://truthordareapi.creativedev.fr/public/spicy_truth_screen.jpg" width="200"></span>
+</p>
+
+
+
 
 # Usage
 
