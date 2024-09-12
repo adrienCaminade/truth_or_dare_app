@@ -104,3 +104,9 @@ The project is still in the refinement phase, especially regarding security. Cur
 It’s important to note that, for now, the API routes used are GET routes only, which minimizes the risk of direct attacks on the database. No sensitive data is being sent or modified through these routes. However, adding authentication, stricter access controls, and protection against malicious requests will be considered in the next development stages to ensure optimal security.
 
 In summary, while the current risks are low, improvements are on the way to guarantee more robust long-term security.
+
+## Licence
+
+![License](https://img.shields.io/badge/license-CC%20BY--NC--ND%204.0-blue.svg)
+
+This repository is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/) license. You are not permitted to use, reproduce, distribute, or create derivative works based on this design without explicit permission from the author. Commercial use is also prohibited. All rights are reserved.
