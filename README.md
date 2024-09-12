@@ -1,8 +1,13 @@
-# "Truth or Dare" Application
 
-"Truth or Dare" is a mobile application developed with Flutter, allowing users to play the famous game in just three clicks.
+# "Truth or Dare" Application 
 
-The goal was to create a fast, intuitive, and visually appealing application by incorporating the glassmorphism style into the user interface for a modern and elegant aesthetic.
+<img src="https://truthordareapi.creativedev.fr/public/logo.png" width="200">
+
+<p>"Truth or Dare" is a mobile application developed with Flutter, allowing users to play the famous game in just three clicks.</p>
+
+<p>The goal was to create a fast, intuitive, and visually appealing application by incorporating the glassmorphism style into the user interface for a modern and elegant aesthetic.</p>
+
+
 
 
 # Design and UX/UI
