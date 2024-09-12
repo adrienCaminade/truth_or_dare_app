@@ -28,6 +28,23 @@ The idea behind this application is to modernize the classic game "Truth or Dare
 
 The target audience includes mostly evening gatherings (student or otherwise), with a quick and intuitive selection system, inspired by drinking games for a smooth and fun experience.
 
+## High Fidelity Wireframes Screens
+
+![image](https://github.com/user-attachments/assets/ba73d863-43c2-4edd-8c95-3d3d7715b276)
+
+
+# Usage
+
+Simply open the app and choose between two game categories:
+
+> Classic
+
+> Spicy
+
+The idea is to offer two distinct atmospheres: a "mild" and friendly version for fun moments and a "spicy" version for more adult and daring evenings.
+
+## App Screens
+
 <p>
 <span><img src="https://truthordareapi.creativedev.fr/public/loading_screen.jpg" width="200"></span>
 <span><img src="https://truthordareapi.creativedev.fr/public/homepage_screen.jpg" width="200"></span>
@@ -44,19 +61,6 @@ The target audience includes mostly evening gatherings (student or otherwise), w
 <span><img src="https://truthordareapi.creativedev.fr/public/spicy_dare_screen.jpg" width="200"></span>
 <span><img src="https://truthordareapi.creativedev.fr/public/spicy_truth_screen.jpg" width="200"></span>
 </p>
-
-
-
-
-# Usage
-
-Simply open the app and choose between two game categories:
-
-> Classic
-
-> Spicy
-
-The idea is to offer two distinct atmospheres: a "mild" and friendly version for fun moments and a "spicy" version for more adult and daring evenings.
 
 
 # Project architecture
