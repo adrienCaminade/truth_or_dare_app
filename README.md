@@ -9,8 +9,9 @@ The goal was to create a fast, intuitive, and visually appealing application by 
 
 This application has two main objectives:
 
-    Implement a glassmorphism user interface using Flutter.
-    Develop a mobile application connected to a web API.
+> Implement a glassmorphism user interface using Flutter.
+
+> Develop a mobile application connected to a web API.
 
 The design follows the principles of glassmorphism, a UI style that gained popularity since 2021. This style emphasizes transparency, creating a glass effect with a blurred background, vivid colors, floating elements, and sharp, clean outlines.
 
@@ -27,8 +28,9 @@ The target audience includes mostly evening gatherings (student or otherwise), w
 
 Simply open the app and choose between two game categories:
 
-    Classic
-    Spicy
+> Classic
+
+> Spicy
 
 The idea is to offer two distinct atmospheres: a "mild" and friendly version for fun moments and a "spicy" version for more adult and daring evenings.
 
@@ -45,10 +47,13 @@ Database Structure
 
 The Laravel application manages four independent tables:
 
-    Classic Action
-    Classic Truth
-    Spicy Action
-    Spicy Truth
+>  Classic Action
+
+> Classic Truth
+
+> Spicy Action
+
+> Spicy Truth
 
 Each table contains an identifier (ID) and a description (which will be displayed in the app).
 
@@ -67,9 +72,11 @@ Once again, the project remains simple, as it fulfills specific and concise requ
 
 The entire project took 5 days to develop, including:
 
-    1 day for UI/UX design,
-    30 minutes for the backend creation with Laravel,
-    The rest of the week for the Flutter frontend integration.
+> 1 day for UI/UX design
+
+> 30 minutes for the backend creation with Laravel
+
+> The rest of the week for the Flutter frontend integration.
 
 # How It Works
 
@@ -79,19 +86,18 @@ Once the data is retrieved, the Flutter application uses a random selection mech
 
 Here's a breakdown of the steps:
 
-    Category Selection: 
-    The user selects one of the two game modes, Classic or Spicy.
+> Category Selection: The user selects one of the two game modes, Classic or Spicy.
 
-    API Call: 
+> API Call: 
     A GET request is sent to the appropriate API route, which returns all the actions or truths associated with the selected category.
 
-    Random Selection: 
+> Random Selection: 
     Once the data is retrieved, a random selection algorithm in Flutter chooses a specific action or truth.
 
-    Displaying Data: 
+> Displaying Data: 
     The Flutter widget is updated to display the selected action or truth to the user.
 
-    New Interaction: 
+> New Interaction: 
     Each subsequent click randomly selects another action or truth from the same category.
 
 
